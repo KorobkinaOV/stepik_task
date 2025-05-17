@@ -1,0 +1,10 @@
+<label class="radio-button">
+  <input
+    type="radio"
+    name={{@name}}
+    value={{@value}}
+    checked={{@selected}}
+    {{on "change" (fn @onChange)}}
+  />
+  {{yield}}
+</label>

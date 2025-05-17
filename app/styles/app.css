@@ -1,7 +1,96 @@
 /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
+@function rem($val) {
+  @return #{$val / $baseFontSize}rem;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.fruit-option {
+  padding: 12px;
+}
+
+.fruits {
+  width: 100%;
+}
+
+.button {
+  background-color: #47b54b;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 1px 0 7px rgb(0 0 0 / 20%);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #3a9b3f;
+    transition: all 0.3s ease;
+  }
+}
+
+.radio-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+
+input[type="radio"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: transparent;
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.1em solid #3b3939;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+
+  /* Windows High Contrast Mode */
+  background-color: #3a9b3f;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="radio"]:focus {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.9);
 }

@@ -1,4 +1,22 @@
 {{page-title "ChoiceQuiz"}}
 
-<Wrapper>Test</Wrapper>
+<Wrapper>
+  <h2>Выберите правильный фрукт (Банан)</h2>
 
+  <section class="fruits">
+    {{#each this.fruits as |fruit|}}
+        <div class="fruit-option">
+            <RadioButton 
+                @name="fruit" 
+                @value={{fruit.label}}  
+                @selected={{this.selectedFruit}} 
+                @onChange={{this.updateFruit}}>
+                    {{fruit.label}}
+            </RadioButton>
+        </div>
+    {{/each}}
+
+    <Button @onClick={{this.sendSelectedFruit}}>Отправить</Button>
+
+  </section>
+</Wrapper>
