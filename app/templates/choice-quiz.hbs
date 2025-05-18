@@ -1,22 +1,21 @@
 {{page-title "ChoiceQuiz"}}
 
 <Wrapper>
-  <h2>Выберите правильный фрукт (Банан)</h2>
+  <section>
+    <SingleOptionQuestion
+        @title="Выберите правильный фрукт (Банан)"
+        @options={{this.firstQuestionOptions}}
+        @userAnswers={{this.userAnswers}}
+        @updateQuestion={{this.updateQuestion}}
+        @result={{this.result}} />
 
-  <section class="fruits">
-    {{#each this.fruits as |fruit|}}
-        <div class="fruit-option">
-            <RadioButton 
-                @name="fruit" 
-                @value={{fruit.label}}  
-                @selected={{this.selectedFruit}} 
-                @onChange={{this.updateFruit}}>
-                    {{fruit.label}}
-            </RadioButton>
-        </div>
-    {{/each}}
+    <MultipleOptionQuestion
+        @title="Выберите правильные животные (Кот, Собака)"
+        @options={{this.secondQuestionOptions}}
+        @userAnswers={{this.userAnswers}}
+        @updateQuestion={{this.updateQuestion}}
+        @result={{this.result}} />
 
-    <Button @onClick={{this.sendSelectedFruit}}>Отправить</Button>
-
+    <Button @onClick={{this.submitResult}} @isLoading={{this.checkAnswerTask.isRunning}}>Отправить</Button>
   </section>
 </Wrapper>
