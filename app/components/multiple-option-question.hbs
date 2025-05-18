@@ -1,0 +1,21 @@
+<h4>{{@title}}</h4>
+
+{{#each @options as |option|}}
+    <div class="option">
+    <Checkbox 
+        @name="secondQuestion" 
+        @value={{option.label}}
+        @isChecked={{get-user-prop @userAnswers option.question}} 
+        @toggleCheckbox={{fn @updateQuestion option.label option.type option.question}}>
+            {{option.label}}
+    </Checkbox>
+
+    {{#if @result}}
+        {{#let (get-user-prop @result option.question 'userAnswers') as |userAnswer|}}
+            {{#if (includes userAnswer option.label)}}
+            <span>{{get-user-prop @result option.question 'isCorrect' option.label}}</span>
+            {{/if}}
+        {{/let}}
+    {{/if}}
+    </div>
+{{/each}}  

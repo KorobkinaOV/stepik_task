@@ -18,13 +18,11 @@ body {
   padding: 15px;
 }
 
-.fruit-option {
+.option {
   padding: 12px;
+  display: flex;
 }
 
-.fruits {
-  width: 100%;
-}
 
 .button {
   background-color: #47b54b;
@@ -42,44 +40,62 @@ body {
     background-color: #3a9b3f;
     transition: all 0.3s ease;
   }
+
+  &:disabled {
+    cursor: default;
+    background-color: #8fa390;
+  }
 }
 
-.radio-button {
+.submitBtn {
+  padding: 10px 35px;
+  position: relative;
+}
+
+.radio-button, 
+.checkbox {
   cursor: pointer;
   display: flex;
   align-items: center;
+  padding-right: 15px;
+
 }
 
-
-input[type="radio"] {
+input[type="radio"],
+input[type="checkbox"] {
   /* Add if not using autoprefixer */
-  -webkit-appearance: none;
+  appearance: none;
+
   /* Remove most all native input styles */
   appearance: none;
+
   /* For iOS < 15 */
   background-color: transparent;
+
   /* Not removed via appearance */
   margin: 0;
-
   font: inherit;
-  color: currentColor;
+  color: currentcolor;
   width: 1.15em;
   height: 1.15em;
   border: 0.1em solid #3b3939;
   border-radius: 50%;
   transform: translateY(-0.075em);
-
   display: grid;
   place-content: center;
   cursor: pointer;
   margin-right: 5px;
 }
 
-input[type="radio"]::before {
+input[type="checkbox"] {
+  border-radius: 0.15em;
+}
+
+input[type="radio"]::before,
+input[type="checkbox"]::before {
   content: "";
   width: 0.65em;
   height: 0.65em;
-  border-radius: 50%;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
 
@@ -87,10 +103,39 @@ input[type="radio"]::before {
   background-color: #3a9b3f;
 }
 
-input[type="radio"]:checked::before {
+input[type="radio"]::before {
+  border-radius: 50%;
+}
+
+input[type="checkbox"]::before {
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform-origin: bottom left;
+}
+
+input[type="radio"]:checked::before,
+input[type="checkbox"]:checked::before {
   transform: scale(1);
 }
 
-input[type="radio"]:focus {
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.9);
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  box-shadow: 0 0 4px rgb(0 0 0 / 90%);
+}
+
+.loader {
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: 
+    radial-gradient(farthest-side,#fff 94%,#0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%,#fff);
+  mask: radial-gradient(farthest-side,#0000 calc(100% - 4px),#000 0);
+  animation: l13 1s infinite linear;
+  position: absolute;
+  left: 7px;
+  top: 7px;
+}
+
+@keyframes l13{ 
+  100%{transform: rotate(1turn)}
 }

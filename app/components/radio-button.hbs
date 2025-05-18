@@ -4,7 +4,8 @@
     name={{@name}}
     value={{@value}}
     checked={{@selected}}
-    {{on "change" (fn @onChange)}}
+    {{on "change" @onChange}}
   />
   {{yield}}
+  
 </label>
