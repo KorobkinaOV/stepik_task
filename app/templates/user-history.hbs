@@ -1,0 +1,21 @@
+{{page-title "UserHistory"}}
+
+<Wrapper>
+    <section>
+        <div class="history-header">
+            <a href="/" class="link-btn">
+                <img src="/back-icon.png" alt="Иконка ссылки" class="back-icon"/>
+            </a>
+            <h2 class="no-margin">История пользователя</h2> 
+        </div>
+
+        <div class="user-history">
+            {{#if this.userHistory}}
+                <UserHistory @userHistory={{this.userHistory}}/>
+                {{else}}
+                <p>Нет данных</p>
+            {{/if}}
+
+        </div>
+    </section>
+</Wrapper>

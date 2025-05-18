@@ -1,4 +1,4 @@
-<button class="button submitBtn" type="button" {{on "click" @onClick}} disabled={{@isLoading}} isLoadin={{@isLoading}}>
+<button class="button {{if @withLoader "submitBtn"}}" type="button" {{on "click" @onClick}} disabled={{@isLoading}} isLoadin={{@isLoading}}>
   {{#if @isLoading}} 
     <span class="loader"></span>
   {{/if}}

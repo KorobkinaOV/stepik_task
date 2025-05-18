@@ -1,18 +1,22 @@
-  <h4>{{@title}}</h4>
+<div class="question">
+    <h2>{{@title}}</h2>
 
-{{#each @options as |option|}}
-    <div class="option">
-        <RadioButton 
-            @name="firstQuestion" 
-            @value={{option.label}}  
-            @selected={{get-user-prop @userAnswers option.question}} 
-            @onChange={{fn @updateQuestion option.label option.type option.question}}>
-                {{option.label}}
-        </RadioButton>
-        {{#if @result}}
-            {{#if (eq (get-user-prop @result option.question 'userAnswers') option.label)}}
-                <span>{{get-user-prop @result option.question 'isCorrect'}}</span>
-            {{/if}}
-        {{/if}}
-    </div>
-{{/each}}
+    {{#each @options as |option|}}
+        <div class="option">
+            <RadioButton 
+                @name="firstQuestion" 
+                @value={{option.label}}  
+                @selected={{get-obj-prop @userAnswers option.question}} 
+                @onChange={{fn @updateQuestion option.label option.type option.question}}>
+                    {{option.label}}
+
+                    {{#if @result}}
+                        {{#if (eq (get-obj-prop @result option.question 'userAnswers') option.label)}}
+                            <span class="correctness">{{get-obj-prop @result option.question 'isCorrect'}}</span>
+                        {{/if}}
+                    {{/if}}
+            </RadioButton>
+
+        </div>
+    {{/each}}
+</div>

@@ -1,0 +1,13 @@
+{{#let (get-obj-prop @questionData "userAnswers") as |userAnswer|}}
+    {{#let (get-obj-prop @questionData "isCorrect") as |isCorrect|}}
+        {{#if (is-array userAnswer)}}
+            {{#each userAnswer as |answer|}}
+                <div class="question-item">
+                    <UserHistory::QuestionView @leftColumn="Ответ" @rightColumn="{{answer}} {{get-obj-prop isCorrect answer}}"/>
+                </div>
+            {{/each}}
+            {{else}}
+                <UserHistory::QuestionView @leftColumn="Ответ" @rightColumn="{{userAnswer}} {{isCorrect}}"/>
+        {{/if}}
+    {{/let}}
+{{/let}}

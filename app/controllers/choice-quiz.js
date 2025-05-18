@@ -3,6 +3,8 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { task } from 'ember-concurrency';
 import { checkAnswers } from '../utils/check-answers';
+import { saveHistory } from '../utils/save-history';
+import { checkEmptyProps } from '../utils/check-empty-props';
 
 export default class ChoiceQuiz extends Controller {
   @tracked result = null;
@@ -53,15 +55,24 @@ export default class ChoiceQuiz extends Controller {
   *checkAnswerTask() {
     yield new Promise((resolve) => setTimeout(resolve, 2000)); // задержка
 
+    console.log('this.userAnswer', this.userAnswers);
+
     this.result = checkAnswers(
       this.userAnswers,
       this.correctFirstQuestionAnswers,
       this.correctSecondQuestionAnswers,
     );
+
+    saveHistory(this.result);
   }
 
   @action
   submitResult() {
+    if (
+      !checkEmptyProps(this.userAnswers, ['firstQuestion', 'secondQuestion'])
+    ) {
+      return;
+    }
     this.checkAnswerTask.perform();
   }
 }
