@@ -1,21 +1,25 @@
 {{page-title "ChoiceQuiz"}}
 
 <Wrapper>
+  <h1>Тестирование</h1>
   <section>
     <SingleOptionQuestion
-        @title="Выберите правильный фрукт (Банан)"
+        @title="1. Выберите правильный фрукт (Банан)"
         @options={{this.firstQuestionOptions}}
         @userAnswers={{this.userAnswers}}
         @updateQuestion={{this.updateQuestion}}
         @result={{this.result}} />
 
     <MultipleOptionQuestion
-        @title="Выберите правильные животные (Кот, Собака)"
+        @title="2. Выберите правильные животные (Кот, Собака)"
         @options={{this.secondQuestionOptions}}
         @userAnswers={{this.userAnswers}}
         @updateQuestion={{this.updateQuestion}}
         @result={{this.result}} />
 
-    <Button @onClick={{this.submitResult}} @isLoading={{this.checkAnswerTask.isRunning}}>Отправить</Button>
+    <div class="footer-btns">
+      <Button @onClick={{this.submitResult}} @isLoading={{this.checkAnswerTask.isRunning}} @withLoader={{true}}>Отправить</Button>
+      <a href="/user-history" class="link-btn">История пользователя</a>
+    </div>
   </section>
 </Wrapper>

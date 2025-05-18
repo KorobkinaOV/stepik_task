@@ -1,0 +1,13 @@
+{{#each @userHistory as |history|}}
+    <div class="history-item">
+        <h3 class="center">Дата - {{format-date history.date}}</h3>
+        {{#each-in history.result as |questionKey questionData|}}
+            {{#if questionData}}
+                <div class="history-question">
+                    <UserHistory::QuestionView @leftColumn="Вопрос" @rightColumn={{questionKey}}/>
+                    <UserHistory::QuestionAnswer @questionData={{questionData}}/>
+                </div>
+            {{/if}}
+        {{/each-in}}
+    </div>
+{{/each}}
